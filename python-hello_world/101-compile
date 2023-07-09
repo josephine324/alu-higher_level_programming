@@ -1,19 +1,2 @@
 #!/bin/bash
-
-# Get the Python file name from the environment variable
-pyfile=$PYFILE
-
-# Generate the output file name
-pyfilec="${pyfile%.*}.pyc"
-
-# Compile the Python script
-echo "Compiling $pyfile ..."
-python -m py_compile "$pyfile"
-
-# Check if compilation was successful
-if [ -f "$pyfilec" ]; then
-  echo "Compilation successful!"
-else
-  echo "Compilation failed."
-fi
-
+python3 -c "import py_compile; py_compile.compile('$PYFILE', '$PYFILE' + 'c')"
