@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """
-This is a file of a class 
+This is a file of a class
 with an integer attribute
 """
+
 
 class Square:
     """
