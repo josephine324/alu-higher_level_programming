@@ -1,9 +1,10 @@
-#!usr/bin/python3
-#1-square.py
+#!/usr/bin/python3
 """
 This is a file of a class with
 private attribute
 """
+
+
 class Square:
     """
     Class with private attribute size
