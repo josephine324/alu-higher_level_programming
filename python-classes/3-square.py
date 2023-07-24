@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is a file of 
+This is a file of
 a class square
 """
 
@@ -18,4 +18,3 @@ class Square:
 
     def area(self):
         return self.__size ** 2
-
