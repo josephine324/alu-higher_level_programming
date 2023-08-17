@@ -1,29 +1,31 @@
 #!/usr/bin/python3
 """
-accepts 3 arguments (mysql username, password and database name)
-and lists all states from that database whose names start with a given string
-SAFELY
+    script that takes in an argument and displays all
+    values in the states table of hbtn_0e_0_usa
 """
+
 import sys
 import MySQLdb
 
 
-def main(argv):
-    """connects to a given mysql database and lists filtered states from it"""
-    conn = MySQLdb.connect(host="localhost", port=3306,
-                           user=argv[1], passwd=argv[2], db=argv[3])
-    cur = conn.cursor()
-    arg = MySQLdb.escape_string(argv[4]).decode()
-    cur.execute("SELECT * FROM states WHERE name LIKE BINARY '{}%'\
-                ORDER BY id ASC".format(arg))
-    query_rows = cur.fetchall()
-    for row in query_rows:
+if __name__ == "__main__":
+    conn = MySQLdb.connect(
+        user=sys.argv[1],
+        password=sys.argv[2],
+        db=sys.argv[3],
+        host="localhost",
+        port=3306
+    )
+    cursor = conn.cursor()
+    sql = """ SELECT * FROM states
+        WHERE name = %s
+        ORDER BY id ASC """
+
+    cursor.execute(sql, (sys.argv[4],))
+    data = cursor.fetchall()
+
+    for row in data:
         print(row)
-    pass
-    cur.close()
+
+    cursor.close()
     conn.close()
-
-
-if __name__ == '__main__':
-    if len(sys.argv) == 5:
-        main(sys.argv)
